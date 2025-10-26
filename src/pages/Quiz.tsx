@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { QuizQuestion } from "@/components/QuizQuestion";
 import { ScoreDisplay } from "@/components/ScoreDisplay";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { questions, Question } from "@/data/questions";
@@ -52,8 +53,9 @@ const Quiz = () => {
   if (quizComplete) {
     const percentage = (score / categoryQuestions.length) * 100;
     return (
-      <div className="min-h-screen bg-background p-4">
-        <div className="container max-w-2xl mx-auto py-8">
+      <div className="min-h-screen bg-background p-4 relative overflow-hidden">
+        <AnimatedBackground />
+        <div className="container max-w-2xl mx-auto py-8 relative z-10">
           <Card className="p-8 text-center shadow-card animate-scale-in">
             <Trophy className="w-24 h-24 mx-auto mb-6 text-primary" />
             <h1 className="text-4xl font-bold mb-4 text-foreground">Quiz Complete!</h1>
@@ -91,8 +93,9 @@ const Quiz = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="container max-w-3xl mx-auto py-8">
+    <div className="min-h-screen bg-background p-4 relative overflow-hidden">
+      <AnimatedBackground />
+      <div className="container max-w-3xl mx-auto py-8 relative z-10">
         <div className="mb-6 flex items-center justify-between">
           <Button
             onClick={() => navigate("/")}
