@@ -148,14 +148,14 @@ export const questions: Question[] = [
   {
     id: 19,
     category: "critical-thinking",
-    question: "If you have a 3-liter jug and a 5-liter jug, how can you measure exactly 4 liters?",
+    question: "My brother ate a hamburger and then got sick. The hamburger must have made him sick.",
     options: [
-      "Fill 5L, pour into 3L, empty 3L, pour remaining 2L from 5L into 3L, fill 5L again, pour into 3L until full",
-      "Fill both jugs",
-      "It's impossible",
-      "Fill 3L twice",
+      "It is based on emotional reasoning.",
+      "It attacks the person instead of the argument.",
+      "It assumes cause and effect without proof.",
+      "It uses a sample size that is too small.",
     ],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     id: 20,
