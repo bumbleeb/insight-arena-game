@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { CategoryCard } from "@/components/CategoryCard";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { Beaker, BookOpen, Brain, Clock } from "lucide-react";
 
 const Index = () => {
@@ -33,13 +35,12 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="container max-w-6xl mx-auto py-12">
+    <div className="min-h-screen bg-background p-4 relative overflow-hidden">
+      <AnimatedBackground />
+      <div className="container max-w-6xl mx-auto py-12 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            BrainQuest
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <AnimatedTitle />
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
             Challenge yourself with engaging questions across Science, History, Literature, and Critical Thinking
           </p>
         </div>
