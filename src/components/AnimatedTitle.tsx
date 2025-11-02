@@ -29,9 +29,9 @@ export const AnimatedTitle = () => {
 
   return (
     <div className="relative inline-block">
-      <h1 className="text-5xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+      <h1 className="text-5xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 drop-shadow-[0_0_30px_rgba(251,191,36,0.8)] filter brightness-125">
         {displayText}
-        <span className="animate-pulse text-primary">|</span>
+        <span className="animate-pulse text-yellow-400">|</span>
       </h1>
       <div className="absolute -inset-4 bg-gradient-primary opacity-30 blur-3xl rounded-full animate-pulse-slow" />
     </div>

@@ -157,8 +157,10 @@ const Quiz = () => {
         </div>
 
         <QuizQuestion
-          question={language === "sq" ? currentQuestion.questionSq : currentQuestion.question}
-          options={language === "sq" ? currentQuestion.optionsSq : currentQuestion.options}
+          question={currentQuestion.question}
+          questionSq={currentQuestion.questionSq}
+          options={currentQuestion.options}
+          optionsSq={currentQuestion.optionsSq}
           correctAnswer={currentQuestion.correctAnswer}
           selectedAnswer={selectedAnswer}
           onAnswerSelect={handleAnswerSelect}

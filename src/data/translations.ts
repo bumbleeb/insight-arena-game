@@ -19,6 +19,8 @@ export const translations = {
     easy: "Easy",
     medium: "Medium",
     hard: "Hard",
+    switchToAlbanian: "Shqip",
+    switchToEnglish: "English",
   },
   sq: {
     title: "BrainQuest",
@@ -40,5 +42,7 @@ export const translations = {
     easy: "E Lehtë",
     medium: "Mesatare",
     hard: "E Vështirë",
+    switchToAlbanian: "Shqip",
+    switchToEnglish: "English",
   },
 };
