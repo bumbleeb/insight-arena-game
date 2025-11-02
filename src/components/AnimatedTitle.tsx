@@ -29,11 +29,11 @@ export const AnimatedTitle = () => {
 
   return (
     <div className="relative inline-block">
-      <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent animate-pulse-slow">
+      <h1 className="text-5xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
         {displayText}
-        <span className="animate-pulse">|</span>
+        <span className="animate-pulse text-primary">|</span>
       </h1>
-      <div className="absolute -inset-4 bg-gradient-primary opacity-20 blur-3xl rounded-full animate-pulse-slow" />
+      <div className="absolute -inset-4 bg-gradient-primary opacity-30 blur-3xl rounded-full animate-pulse-slow" />
     </div>
   );
 };
