@@ -9,10 +9,10 @@
 ## JAVA 1: Setup ✅
 
 **Blerton:**
-- ✅ Vite + React + TypeScript
-- ✅ Tailwind CSS config
-- ✅ Folder structure
-- ✅ Router setup
+- ✅ Krijimi i struktures fillestare te projektit me Vite dhe React
+- ✅ Instalimi dhe konfigurimi i TypeScript
+- ✅ Setup i Tailwind CSS dhe konfigurimi i tailwind.config.ts
+- ✅ Krijimi i struktures se folderave (components, pages, data, hooks, lib)
 
 **Koha:** ~15 orë
 

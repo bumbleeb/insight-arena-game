@@ -2,6 +2,13 @@
 
 ## Detyrat e Blerton në Java 1
 
+1. ✅ Krijimi i struktures fillestare te projektit me Vite dhe React
+2. ✅ Instalimi dhe konfigurimi i TypeScript
+3. ✅ Setup i Tailwind CSS dhe konfigurimi i tailwind.config.ts
+4. ✅ Krijimi i struktures se folderave (components, pages, data, hooks, lib)
+
+---
+
 ### 1. Struktura e Folderave
 ```
 brainquest/

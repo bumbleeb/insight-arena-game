@@ -39,11 +39,10 @@ BrainQuest është aplikacion quiz edukativ për studentë 13-18 vjeç me 4 kate
 
 ## Java 1 - Setup (Blerton)
 
-✅ Vite + React + TypeScript  
-✅ Tailwind CSS config  
-✅ Folder structure  
-✅ Router setup  
-✅ Query client
+✅ Krijimi i struktures fillestare te projektit me Vite dhe React  
+✅ Instalimi dhe konfigurimi i TypeScript  
+✅ Setup i Tailwind CSS dhe konfigurimi i tailwind.config.ts  
+✅ Krijimi i struktures se folderave (components, pages, data, hooks, lib)
 
 ---
 
