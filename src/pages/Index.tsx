@@ -3,13 +3,15 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { Button } from "@/components/ui/button";
-import { Beaker, BookOpen, Brain, Clock, Globe } from "lucide-react";
+import { Beaker, BookOpen, Brain, Clock, Globe, Trophy, LogOut } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { translations } from "@/data/translations";
 
 const Index = () => {
   const navigate = useNavigate();
   const { language, setLanguage } = useLanguage();
+  const { signOut } = useAuth();
   const t = translations[language];
 
   const categories = [
@@ -39,18 +41,31 @@ const Index = () => {
     },
   ];
 
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+  };
+
   return (
     <div className="min-h-screen bg-background p-4 relative overflow-hidden">
       <AnimatedBackground />
       <div className="container max-w-6xl mx-auto py-12 relative z-10">
         <div className="absolute top-4 right-4 flex gap-2 z-20">
           <Button
+            variant="outline"
+            onClick={() => navigate("/leaderboard")}
+            className="gap-2"
+          >
+            <Trophy className="w-4 h-4" />
+            {language === "en" ? "Leaderboard" : "Renditja"}
+          </Button>
+          <Button
             variant={language === "en" ? "default" : "outline"}
             onClick={() => setLanguage("en")}
             className="gap-2"
           >
             <Globe className="w-4 h-4" />
-            English
+            EN
           </Button>
           <Button
             variant={language === "sq" ? "default" : "outline"}
@@ -58,7 +73,14 @@ const Index = () => {
             className="gap-2"
           >
             <Globe className="w-4 h-4" />
-            Shqip
+            SQ
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={handleSignOut}
+            className="gap-2 text-destructive hover:text-destructive"
+          >
+            <LogOut className="w-4 h-4" />
           </Button>
         </div>
 

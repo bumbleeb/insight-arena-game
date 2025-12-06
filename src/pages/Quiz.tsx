@@ -9,11 +9,14 @@ import { BrainBackground } from "@/components/backgrounds/BrainBackground";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { questions, Question } from "@/data/questions";
+import { questions } from "@/data/questions";
 import { ArrowLeft, Trophy, RefreshCw } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -21,6 +24,7 @@ const Quiz = () => {
   const category = searchParams.get("category") || "science";
   const { language } = useLanguage();
   const t = translations[language];
+  const { user } = useAuth();
 
   const categoryQuestions = questions.filter((q) => q.category === category);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -28,6 +32,7 @@ const Quiz = () => {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [quizComplete, setQuizComplete] = useState(false);
+  const [scoreSaved, setScoreSaved] = useState(false);
 
   const currentQuestion = categoryQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / categoryQuestions.length) * 100;
@@ -68,13 +73,33 @@ const Quiz = () => {
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     if (currentQuestionIndex < categoryQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
       setQuizComplete(true);
+      // Save score to leaderboard
+      if (user && !scoreSaved) {
+        const finalScore = selectedAnswer === currentQuestion.correctAnswer ? score + 1 : score;
+        const percentage = (finalScore / categoryQuestions.length) * 100;
+        
+        const { error } = await supabase.from("leaderboard").insert({
+          user_id: user.id,
+          category,
+          score: finalScore,
+          total_questions: categoryQuestions.length,
+          percentage: parseFloat(percentage.toFixed(2)),
+        });
+
+        if (error) {
+          console.error("Failed to save score:", error);
+        } else {
+          setScoreSaved(true);
+          toast.success(language === "en" ? "Score saved to leaderboard!" : "Rezultati u ruajt!");
+        }
+      }
     }
   };
 
@@ -84,10 +109,12 @@ const Quiz = () => {
     setShowResult(false);
     setScore(0);
     setQuizComplete(false);
+    setScoreSaved(false);
   };
 
   if (quizComplete) {
-    const percentage = (score / categoryQuestions.length) * 100;
+    const finalScore = score;
+    const percentage = (finalScore / categoryQuestions.length) * 100;
     return (
       <div className="min-h-screen bg-background p-4 relative overflow-hidden">
         {getBackgroundComponent()}
@@ -97,7 +124,7 @@ const Quiz = () => {
             <h1 className="text-4xl font-bold mb-4 text-foreground">{t.quizComplete}</h1>
             <div className="mb-6">
               <p className="text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-                {score} / {categoryQuestions.length}
+                {finalScore} / {categoryQuestions.length}
               </p>
               <p className="text-xl text-muted-foreground">
                 {t.youScored} {percentage.toFixed(0)}%
@@ -111,6 +138,15 @@ const Quiz = () => {
               >
                 <RefreshCw className="w-5 h-5 mr-2" />
                 {t.tryAgain}
+              </Button>
+              <Button
+                onClick={() => navigate("/leaderboard")}
+                variant="secondary"
+                className="w-full"
+                size="lg"
+              >
+                <Trophy className="w-5 h-5 mr-2" />
+                {language === "en" ? "View Leaderboard" : "Shiko Renditjen"}
               </Button>
               <Button
                 onClick={() => navigate("/")}
